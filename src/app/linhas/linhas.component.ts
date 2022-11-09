@@ -1,37 +1,60 @@
-import { Component } from '@angular/core';
-import { pb1, pb2 } from '@angular/core/src/render3';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-linhas',
   templateUrl: './linhas.component.html',
   styleUrls: ['./linhas.component.css']
 })
-export class LinhasComponent {
-  p1 = 'X'
-  p2 = 'O'
+export class LinhasComponent implements OnInit {
 
-  jogada = this.p1;
-  fim = false
+  quadrados:any = [];
+  p1Prox = true;
+  ganhador = '';
+  contador = 0;
+  empate = '';
+  atualizar = true;
+  constructor() { }
 
-  iniciaEspacos(){
-    var espacos = document.getElementsByClassName('espaco')
-    for (var i = 0; i < espacos.length ; i++){
+  ngOnInit() { }
 
-      espacos[i].addEventListener('click', function(){
-        if(this.fim){
-          return;
-        }
-        if(this.getElementsByTagName('img').length == 0){
-          if(this.jogada == this.p1){
-            this.innerHTML = '✖️'
-            this.jogada = this.p2;
-          }else{
-            this.innerHTML = '⚫'
-            this.setAttribute("jogada", this.p1);
-            this.jogada = this.p1;
-          }
-        }
-      });
+  novoJogo(){
+    this.quadrados = Array(9).fill(null);
+    this.ganhador = '';
+    this.empate = '';
+    this.contador = 0;
+    this.atualizar = false;
+  }
+
+  get jogador(){
+    return this.p1Prox ? 'X' : 'O'
+  }
+
+  movimento(idx:number){
+    if(!this.quadrados[idx]){
+      this.quadrados.splice(idx, this.p1Prox, this.jogador)
+      this.p1Prox = !this.p1Prox;
+      this.contador++;
+    }
+    this.ganhador = this.calcularGanhador();
+
+    if(!this.ganhador && this.contador == 9){
+      this.empate = 'yes';
     }
   }
+
+  calcularGanhador(){
+    const linhas =[
+      [0, 1, 2], [3, 4, 5], [6, 7, 8],
+      [0, 3, 6], [1, 4, 7], [2, 5, 8],
+      [0, 4, 8], [2, 4, 6]
+    ]
+    for(let i = 0 ; i < linhas.length ; i++){
+      const [a, b, c] = linhas[i];
+      if(this.quadrados[a] && this.quadrados[a] === this.quadrados[b] && this.quadrados[c]){
+        return this.quadrados[a];
+      }
+      return null;
+    }
+  }
+
 }

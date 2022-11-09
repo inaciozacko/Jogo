@@ -1,17 +1,31 @@
-body{
+*{
     margin: 0 auto;
+    padding: 0;
 }
 
-.espaco{
-    width: 90px;
-    height: 60px;
-    border: 1px solid black;
-    float: left;
-    text-align: center;
-    padding-top: 30px;
+.cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
-.tabuleiro{
-    width: 300px;
-    margin: auto;
+main{
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    grid-gap: 0px;
+}
+
+app-tabela{
+    border: 1px solid gray;
+    height: 20px;
+}
+
+button{
+    font-size: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin: 10px;
 }

@@ -1,13 +1,12 @@
-  <div class="tabuleiro">
-    <div id="a1" class="espaco"></div>
-    <div id="a2" class="espaco"></div>
-    <div id="a3" class="espaco"></div>
+<div class="cont">
+  <h2 *ngIf="atualizar">Vamos jogar o jogo da velha?</h2>
+  <h1 *ngIf="!ganhador && !empate && !atualizar">player atual: {{player}}</h1>
+  <h1 *ngIf="ganhador">Player ganhador: {{ganhador}}</h1>
+  <h2 *ngIf="empate">Empate!!</h2>
 
-    <div id="b1" class="espaco"></div>
-    <div id="b2" class="espaco"></div>
-    <div id="b3" class="espaco"></div>
+  <button (click)="novoJogo()">Iniciar</button>
 
-    <div id="c1" class="espaco"></div>
-    <div id="c2" class="espaco"></div>
-    <div id="c3" class="espaco"></div>
-  </div>
+  <main *ngIf="!ganhador && !empate">
+    <app-tabela *ngFor="let val of quadrados ; let i = index" [value]="val" (click)="movimento(i)"></app-tabela>
+  </main>
+</div>
