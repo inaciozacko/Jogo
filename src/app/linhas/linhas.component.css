@@ -1,0 +1,17 @@
+body{
+    margin: 0 auto;
+}
+
+.espaco{
+    width: 90px;
+    height: 60px;
+    border: 1px solid black;
+    float: left;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.tabuleiro{
+    width: 300px;
+    margin: auto;
+}
