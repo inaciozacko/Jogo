@@ -1,7 +1,7 @@
 <div class="cont">
   <h2 *ngIf="atualizar">Vamos jogar o jogo da velha?</h2>
-  <h1 *ngIf="!ganhador && !empate && !atualizar">player atual: {{player}}</h1>
-  <h1 *ngIf="ganhador">Player ganhador: {{ganhador}}</h1>
+  <h1 *ngIf="!ganhador && !empate && !atualizar">Jogador atual: {{jogador}}</h1>
+  <h1 *ngIf="ganhador">Jogador ganhador: {{ganhador}}</h1>
   <h2 *ngIf="empate">Empate!!</h2>
 
   <button (click)="novoJogo()">Iniciar</button>

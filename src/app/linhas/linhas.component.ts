@@ -31,7 +31,7 @@ export class LinhasComponent implements OnInit {
 
   movimento(idx:number){
     if(!this.quadrados[idx]){
-      this.quadrados.splice(idx, this.p1Prox, this.jogador)
+      this.quadrados.splice(idx, 1, this.jogador)
       this.p1Prox = !this.p1Prox;
       this.contador++;
     }
@@ -50,11 +50,11 @@ export class LinhasComponent implements OnInit {
     ]
     for(let i = 0 ; i < linhas.length ; i++){
       const [a, b, c] = linhas[i];
-      if(this.quadrados[a] && this.quadrados[a] === this.quadrados[b] && this.quadrados[c]){
+      if(this.quadrados[a] && this.quadrados[a] === this.quadrados[b] && this.quadrados[a] === this.quadrados[c]){
         return this.quadrados[a];
       }
-      return null;
     }
+    return null;
   }
 
 }
